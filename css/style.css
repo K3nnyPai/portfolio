@@ -1,0 +1,506 @@
+/* --- 1. VARIABLES Y RESET --- */
+:root {
+    /* Paleta de colores extraída de tu PDF */
+    --bg-color: #090E16;        /* Fondo principal oscuro */
+    --card-bg: #12121F;         /* Fondo de las tarjetas */
+    --primary-color: #7B4AE2;   /* Morado vibrante (Acento) */
+    --text-color: #FFFFFF;      /* Texto principal */
+    --text-secondary: #A0A0A0;  /* Texto secundario (gris) */
+    
+    /* Tipografía */
+    --font-main: 'Poppins', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* Esto hace el efecto suave al navegar */
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    line-height: 1.6;
+}
+
+/* --- 2. CLASES DE UTILIDAD --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.badge {
+    background-color: rgba(123, 74, 226, 0.1); /* Morado transparente */
+    color: var(--primary-color);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 500;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+/* --- 3. HEADER (Navegación) --- */
+.header {
+    position: fixed; /* Fijo arriba */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(9, 14, 22, 0.9); /* Fondo semi-transparente */
+    backdrop-filter: blur(10px); /* Efecto borroso tipo vidrio */
+    z-index: 1000;
+    padding: 20px 0;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.navbar a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    margin-left: 25px;
+    transition: color 0.3s;
+    font-size: 0.95rem;
+}
+
+.navbar a:hover, .navbar a.active {
+    color: var(--text-color);
+}
+
+/* --- 4. SECCIONES GENERALES --- */
+.section {
+    padding: 100px 0; /* Espaciado entre secciones */
+    min-height: 100vh; /* Opcional: cada sección ocupa toda la pantalla */
+}
+
+/* --- 5. HERO SECTION --- */
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 80px; /* Para que no lo tape el header */
+}
+
+.hero-text h1 {
+    font-size: 3.5rem;
+    margin: 20px 0;
+}
+
+.hero-text h2 {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+.hero-img img {
+    width: 350px;
+    height: 350px;
+    border-radius: 50%; /* Círculo */
+    object-fit: cover;
+    border: 4px solid var(--primary-color);
+    box-shadow: 0 0 30px rgba(123, 74, 226, 0.3); /* Resplandor morado */
+}
+
+/* --- 6. FOOTER --- */
+.footer {
+    background-color: var(--card-bg);
+    padding: 30px 0;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+/* --- ESTILOS DE TARJETAS Y GRID --- */
+
+/* Configuración General de Cards */
+.card {
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    padding: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05); /* Borde muy sutil */
+}
+
+.card:hover {
+    transform: translateY(-10px); /* Efecto de "levantarse" */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border-color: var(--primary-color); /* Borde morado al pasar el mouse */
+}
+
+/* GRIDS (La magia de la distribución) */
+.services-grid {
+    display: grid;
+    /* Esto crea columnas automáticas que se ajustan al tamaño */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* Estilos Específicos de SERVICIOS */
+.service-card {
+    text-align: center;
+}
+
+.icon-box {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.service-card h3 {
+    margin-bottom: 15px;
+    font-size: 1.25rem;
+}
+
+.service-card p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Estilos Específicos de PROYECTOS */
+.project-card {
+    padding: 0; /* Quitamos padding para que la imagen toque los bordes */
+    overflow: hidden; /* Para que la imagen respete el borde redondeado */
+}
+
+.project-img {
+    height: 200px;
+    background-color: #2a2a35; /* Fondo temporal si no hay imagen */
+    overflow: hidden;
+}
+
+.project-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* La imagen cubre todo el espacio sin deformarse */
+    transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-img img {
+    transform: scale(1.1); /* Zoom suave a la imagen al hacer hover */
+}
+
+.project-info {
+    padding: 25px;
+}
+
+.tags {
+    margin-bottom: 15px;
+}
+
+.tag {
+    background-color: rgba(123, 74, 226, 0.2);
+    color: #ae8aff;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-right: 5px;
+}
+
+.project-info h3 {
+    margin-bottom: 10px;
+}
+
+.project-info p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.btn-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.btn-link:hover {
+    text-decoration: underline;
+}
+/* --- ESTILOS DE SKILLS --- */
+.skills-content {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.skills-content h3 {
+    color: var(--text-secondary);
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+
+.skills-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.skill-item {
+    background-color: var(--card-bg);
+    width: 100px;
+    height: 100px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.skill-item:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+}
+
+.skill-item i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.skill-item span {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* --- ESTILOS DE CAREER (TRAYECTORIA) --- */
+.career-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 50px;
+    margin-top: 40px;
+}
+
+.career-column h3 {
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.5rem;
+}
+
+.career-card {
+    background-color: var(--card-bg);
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    border-left: 4px solid var(--primary-color); /* Línea de acento a la izquierda */
+    position: relative;
+}
+
+.career-card .date {
+    font-size: 0.85rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.career-card h4 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.career-card .company {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-style: italic;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.career-card p {
+    font-size: 0.9rem;
+    color: #ccc;
+    line-height: 1.5;
+}
+
+/* --- ESTILOS ESPECÍFICOS DE ABOUT ME --- */
+
+/* Contenedor principal: Divide en 2 columnas */
+.about-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 80px; /* Espacio entre la foto y el texto */
+    margin-top: 40px;
+}
+
+/* --- LADO IZQUIERDO: IMAGEN Y ICONOS --- */
+.about-img-wrapper {
+    position: relative; /* Necesario para que los iconos floten respecto a esto */
+    width: 350px;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* La foto circular con borde y resplandor */
+.about-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%; /* Círculo perfecto */
+    border: 3px solid rgba(123, 74, 226, 0.5); /* Borde morado suave */
+    /* El resplandor (Glow effect) */
+    box-shadow: 0 0 50px rgba(123, 74, 226, 0.25); 
+}
+
+/* Estilo base para los iconos flotantes */
+.floating-icon {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: #1a1a2e; /* Fondo oscuro para el icono */
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+}
+
+/* Posiciones exactas (como un reloj) */
+
+/* Figma: Arriba a la izquierda */
+.icon-figma {
+    top: 20px;
+    left: 0;
+    color: #F24E1E; /* Color naranja de Figma */
+}
+
+/* TypeScript: Abajo a la izquierda */
+.icon-ts {
+    bottom: 20px;
+    left: 0;
+    color: #3178C6; /* Azul TS */
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+/* React: Abajo a la derecha */
+.icon-react {
+    bottom: 0;
+    right: 40px;
+    color: #61DAFB; /* Azul React */
+}
+
+/* --- LADO DERECHO: TEXTO --- */
+.about-text-content {
+    flex: 1; /* Toma el espacio restante */
+    max-width: 600px;
+}
+
+.about-text-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 25px;
+}
+
+.about-text-content p {
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+/* --- RESPONSIVE (Para celular) --- */
+@media (max-width: 991px) {
+    .about-container {
+        flex-direction: column; /* Pone la imagen arriba y texto abajo */
+        gap: 40px;
+        text-align: center;
+    }
+    
+    .about-img-wrapper {
+        width: 280px;
+        height: 280px;
+    }
+}
+
+/* --- CAMBIOS EN HEADER (Efecto Sticky) --- */
+/* Modifica tu clase .header actual para que sea transparente al inicio */
+.header {
+    background-color: transparent; /* Antes era oscuro, ahora transparente */
+    transition: all 0.4s ease;
+}
+
+/* Esta clase la agrega el JS cuando bajas */
+.header.sticky {
+    background-color: rgba(9, 14, 22, 0.95); /* Ahora sí se pone oscuro */
+    padding: 15px 0; /* Se hace un poco más pequeño */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* --- ESTILOS DEL BOTÓN DE MENÚ (Móvil) --- */
+#menu-icon {
+    font-size: 1.8rem;
+    color: var(--text-color);
+    cursor: pointer;
+    display: none; /* Oculto en PC */
+}
+
+/* --- MEDIA QUERIES (Para Celulares) --- */
+/* Agrega esto AL FINAL de tu archivo CSS */
+@media (max-width: 991px) {
+    .header {
+        padding: 15px 4%;
+    }
+    
+    #menu-icon {
+        display: block; /* Mostrar icono en celular */
+    }
+
+    .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: var(--bg-color);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 50px;
+        /* Oculto por defecto */
+        display: none; 
+    }
+
+    /* Clase que agrega el JS al hacer clic */
+    .navbar.active {
+        display: flex;
+    }
+
+    .navbar a {
+        display: block;
+        margin: 20px 0;
+        font-size: 1.5rem;
+    }
+}
