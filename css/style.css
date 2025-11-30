@@ -107,15 +107,6 @@ body {
     font-weight: 400;
 }
 
-.hero-img img {
-    width: 350px;
-    height: 350px;
-    border-radius: 50%; /* Círculo */
-    object-fit: cover;
-    border: 4px solid var(--primary-color);
-    box-shadow: 0 0 30px rgba(123, 74, 226, 0.3); /* Resplandor morado */
-}
-
 /* --- 6. FOOTER --- */
 .footer {
     background-color: var(--card-bg);
