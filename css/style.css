@@ -47,14 +47,15 @@ body {
 
 /* --- 3. HEADER (Navegación) --- */
 .header {
-    position: fixed; /* Fijo arriba */
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(9, 14, 22, 0.9); /* Fondo semi-transparente */
-    backdrop-filter: blur(10px); /* Efecto borroso tipo vidrio */
-    z-index: 1000;
-    padding: 20px 0;
+position: fixed; 
+top: 0;
+left: 0;
+width: 100%;
+z-index: 1000;
+padding: 20px 0;
+background-color: transparent; 
+backdrop-filter: blur(10px); /* Vuelve a añadir el blur aquí */
+transition: all 0.4s ease;
 }
 
 .header-content {
